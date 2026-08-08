@@ -59,6 +59,13 @@ h3{font-size:1.28rem;font-weight:600;text-transform:uppercase;color:var(--navy)}
 .footer__brand{display:flex;align-items:center;gap:.5rem}
 .footer__mark{height:28px;width:auto;display:block}
 .brand__name{font-size:1.25rem;font-weight:700;letter-spacing:.06em}
+/* Wordmark en recuadro como la tarjeta */
+.header .brand__name{
+  background:var(--navy);color:var(--cream);
+  font-family:'Inter',sans-serif;font-weight:600;
+  font-size:.86rem;letter-spacing:.17em;text-transform:uppercase;
+  padding:.5rem .72rem .5rem .78rem;line-height:1;border-radius:2px;
+}
 .nav{display:flex;gap:1.7rem}
 .nav a{font-size:.92rem;font-weight:500;color:var(--navy);position:relative;padding:.2rem 0}
 .nav a::after{content:"";position:absolute;left:0;bottom:-2px;width:0;height:2px;background:var(--powder-dk);transition:width .2s}
