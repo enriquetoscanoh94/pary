@@ -14,6 +14,7 @@
 
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
+html,body{overflow-x:hidden;max-width:100%}
 body{
   font-family:'Inter',system-ui,sans-serif;
   color:var(--ink);
@@ -151,9 +152,31 @@ h3{font-size:1.28rem;font-weight:600;text-transform:uppercase;color:var(--navy)}
   .gallery{grid-template-columns:1fr 1fr}
 }
 @media(max-width:680px){
-  .nav{position:fixed;inset:0 0 auto 0;top:60px;flex-direction:column;background:var(--cream);padding:1.2rem 6%;gap:1rem;transform:translateY(-140%);transition:transform .3s;box-shadow:var(--shadow);border-bottom:1px solid rgba(44,49,58,.1)}
+  .nav{position:fixed;inset:0 0 auto 0;top:52px;flex-direction:column;background:var(--cream);padding:1.1rem 6%;gap:1.15rem;transform:translateY(-160%);transition:transform .3s;box-shadow:var(--shadow);border-bottom:1px solid rgba(44,49,58,.1)}
+  .nav a{font-size:1.05rem;padding:.35rem 0}
   .nav.open{transform:translateY(0)}
   .burger{display:flex}
   .grid--3,.gallery,.contact__cards{grid-template-columns:1fr}
   .fab{display:grid}
+  /* header compacto: el boton Llamar se reemplaza por el boton flotante */
+  .header__inner{gap:.5rem;padding:.65rem 0}
+  .header .btn--sm{display:none}
+  .brand{gap:.45rem}
+  .brand__mark{height:26px}
+  .header .brand__name{font-size:.72rem;letter-spacing:.13em;padding:.42rem .55rem}
+  /* hero: overlay mas parejo y oscuro para leer bien */
+  .hero{min-height:auto}
+  .hero__overlay{background:linear-gradient(180deg,rgba(34,38,45,.72),rgba(34,38,45,.82))}
+  .hero__content{padding:3.4rem 0}
+  .hero__sub{font-size:1.02rem}
+  .why{gap:1.8rem}
+}
+@media(max-width:480px){
+  .hero__cta{flex-direction:column;align-items:stretch}
+  .hero__cta .btn{width:100%}
+  .strip__inner{gap:.6rem 1.4rem;font-size:.9rem}
+  .section{padding:3rem 0}
+  .card{padding:1.35rem}
+  .ccard__value{font-size:1.18rem}
+  .footer__inner{flex-direction:column;text-align:center;gap:.6rem}
 }
