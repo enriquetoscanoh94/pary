@@ -8,6 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="icon" type="image/png" href="assets/favicon.png" />
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
@@ -16,9 +17,7 @@
   <header class="header" id="header">
     <div class="container header__inner">
       <a href="#top" class="brand">
-        <span class="brand__mark" aria-hidden="true">
-          <svg viewBox="0 0 40 60" width="26" height="39"><path d="M22 2 L10 34 L20 30 L14 58 L32 22 L22 26 Z" fill="currentColor"/></svg>
-        </span>
+        <img class="brand__mark" src="assets/logo-mark.png" alt="The Stucco Guy logo" />
         <span class="brand__name">THE STUCCO GUY</span>
       </a>
 
@@ -102,11 +101,24 @@
       <p class="eyebrow eyebrow--dark" data-i18n="gallery_eyebrow">Nuestro trabajo</p>
       <h2 data-i18n="gallery_title">Galería de proyectos</h2>
       <div class="gallery">
-        <div class="gallery__item"><img src="assets/hero.jpg" alt="Stucco home exterior" /></div>
-        <div class="gallery__item"><img src="assets/craftsman.jpg" alt="Applying stucco finish" /></div>
-        <div class="gallery__item"><img src="assets/texture.jpg" alt="Stucco texture detail" /></div>
+        <figure class="gallery__item">
+          <img src="assets/proj1.jpg" alt="Preparacion de pared con papel y malla" loading="lazy" />
+          <figcaption data-i18n="proj1_cap">Preparación: papel y malla</figcaption>
+        </figure>
+        <figure class="gallery__item">
+          <img src="assets/proj2.jpg" alt="Instalacion de malla metalica" loading="lazy" />
+          <figcaption data-i18n="proj2_cap">Instalación de malla</figcaption>
+        </figure>
+        <figure class="gallery__item">
+          <img src="assets/proj3.jpg" alt="Aplicacion de base coat de stucco" loading="lazy" />
+          <figcaption data-i18n="proj3_cap">Aplicación de base</figcaption>
+        </figure>
+        <figure class="gallery__item">
+          <img src="assets/proj4.jpg" alt="Pared con acabado de stucco terminado" loading="lazy" />
+          <figcaption data-i18n="proj4_cap">Acabado final</figcaption>
+        </figure>
       </div>
-      <p class="gallery__note" data-i18n="gallery_note">Fotos de muestra — pronto agregaremos proyectos reales.</p>
+      <p class="gallery__note" data-i18n="gallery_note">Proyecto real en Stockton, CA — del preparado al acabado.</p>
     </div>
   </section>
 
@@ -161,7 +173,7 @@
   <!-- ===== FOOTER ===== -->
   <footer class="footer">
     <div class="container footer__inner">
-      <span class="brand__name">THE STUCCO GUY</span>
+      <span class="footer__brand"><img src="assets/logo-mark-white.png" alt="" class="footer__mark" /><span class="brand__name">THE STUCCO GUY</span></span>
       <span class="footer__copy">© <span id="year"></span> The Stucco Guy · Stockton, CA</span>
     </div>
   </footer>
