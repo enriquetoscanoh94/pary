@@ -14,7 +14,7 @@ const EN = {
   svc5_t:"Color coat", svc5_d:"Long-lasting color coat for an even tone with no need to paint.",
   svc6_t:"Foam trim", svc6_d:"Decorative foam trim around windows and doors to add character.",
   gallery_eyebrow:"Our work", gallery_title:"Project gallery",
-  gallery_note:"Real projects in Stockton, CA & surrounding areas — from prep to finish.",
+  gallery_note:"Real projects in Stockton, CA & surrounding areas — tap a photo to enlarge.",
   why_eyebrow:"Why choose us", why_title:"Done right, the first time",
   why_1:"Clean, even finishes that look professional.",
   why_2:"Work directly with the owners: Jaciel & Filogonio Arroyo.",
@@ -51,8 +51,49 @@ nav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => nav.cla
 // Year
 document.getElementById('year').textContent = new Date().getFullYear();
 
-// ===== Lightbox / carrusel =====
-const gImgs = Array.from(document.querySelectorAll('.gallery__item img'));
+// ===== Carrusel (visor en pagina) =====
+const track = document.getElementById('carTrack');
+const slides = Array.from(track.children);
+const dotsWrap = document.getElementById('carDots');
+let cur = 0, autoTimer = null;
+
+slides.forEach((_, i) => {
+  const d = document.createElement('button');
+  d.className = 'car__dot' + (i === 0 ? ' active' : '');
+  d.setAttribute('aria-label', 'Foto ' + (i + 1));
+  d.addEventListener('click', () => { goTo(i); resetAuto(); });
+  dotsWrap.appendChild(d);
+});
+const dots = Array.from(dotsWrap.children);
+
+function goTo(i){
+  cur = (i + slides.length) % slides.length;
+  track.style.transform = 'translateX(' + (-cur * 100) + '%)';
+  dots.forEach((d, k) => d.classList.toggle('active', k === cur));
+}
+document.getElementById('carNext').addEventListener('click', () => { goTo(cur + 1); resetAuto(); });
+document.getElementById('carPrev').addEventListener('click', () => { goTo(cur - 1); resetAuto(); });
+
+// autoplay
+function startAuto(){ autoTimer = setInterval(() => goTo(cur + 1), 5000); }
+function resetAuto(){ clearInterval(autoTimer); startAuto(); }
+const carousel = document.getElementById('carousel');
+carousel.addEventListener('mouseenter', () => clearInterval(autoTimer));
+carousel.addEventListener('mouseleave', startAuto);
+startAuto();
+
+// swipe en el carrusel
+let cX = null;
+carousel.addEventListener('touchstart', e => { cX = e.changedTouches[0].clientX; clearInterval(autoTimer); }, {passive:true});
+carousel.addEventListener('touchend', e => {
+  if(cX === null) return;
+  const dx = e.changedTouches[0].clientX - cX;
+  if(Math.abs(dx) > 45) goTo(cur + (dx < 0 ? 1 : -1));
+  cX = null; startAuto();
+});
+
+// ===== Lightbox (tocar foto -> pantalla completa) =====
+const gImgs = Array.from(document.querySelectorAll('.car__slide img'));
 const lb = document.getElementById('lightbox');
 const lbImg = document.getElementById('lbImg');
 const lbCounter = document.getElementById('lbCounter');
