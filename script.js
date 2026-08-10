@@ -14,8 +14,7 @@ const EN = {
   svc5_t:"Color coat", svc5_d:"Long-lasting color coat for an even tone with no need to paint.",
   svc6_t:"Foam trim", svc6_d:"Decorative foam trim around windows and doors to add character.",
   gallery_eyebrow:"Our work", gallery_title:"Project gallery",
-  proj1_cap:"Prep: paper & lath", proj2_cap:"Lath installation", proj3_cap:"Base coat", proj4_cap:"Finished wall",
-  gallery_note:"Real project in Stockton, CA — from prep to finish.",
+  gallery_note:"Real projects in Stockton, CA & surrounding areas — from prep to finish.",
   why_eyebrow:"Why choose us", why_title:"Done right, the first time",
   why_1:"Clean, even finishes that look professional.",
   why_2:"Work directly with the owners: Jaciel & Filogonio Arroyo.",
@@ -51,3 +50,42 @@ nav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => nav.cla
 
 // Year
 document.getElementById('year').textContent = new Date().getFullYear();
+
+// ===== Lightbox / carrusel =====
+const gImgs = Array.from(document.querySelectorAll('.gallery__item img'));
+const lb = document.getElementById('lightbox');
+const lbImg = document.getElementById('lbImg');
+const lbCounter = document.getElementById('lbCounter');
+let idx = 0;
+
+function showLb(i){
+  idx = (i + gImgs.length) % gImgs.length;
+  lbImg.src = gImgs[idx].src;
+  lbImg.alt = gImgs[idx].alt;
+  lbCounter.textContent = (idx + 1) + ' / ' + gImgs.length;
+}
+function openLb(i){ showLb(i); lb.classList.add('open'); lb.setAttribute('aria-hidden','false'); document.body.style.overflow='hidden'; }
+function closeLb(){ lb.classList.remove('open'); lb.setAttribute('aria-hidden','true'); document.body.style.overflow=''; }
+
+gImgs.forEach((img,i) => img.addEventListener('click', () => openLb(i)));
+document.getElementById('lbClose').addEventListener('click', closeLb);
+document.getElementById('lbPrev').addEventListener('click', e => { e.stopPropagation(); showLb(idx-1); });
+document.getElementById('lbNext').addEventListener('click', e => { e.stopPropagation(); showLb(idx+1); });
+// cerrar al tocar el fondo (fuera de la imagen y flechas)
+lb.addEventListener('click', e => { if(e.target === lb) closeLb(); });
+// teclado
+document.addEventListener('keydown', e => {
+  if(!lb.classList.contains('open')) return;
+  if(e.key === 'Escape') closeLb();
+  else if(e.key === 'ArrowLeft') showLb(idx-1);
+  else if(e.key === 'ArrowRight') showLb(idx+1);
+});
+// swipe en celular
+let touchX = null;
+lbImg.addEventListener('touchstart', e => { touchX = e.changedTouches[0].clientX; }, {passive:true});
+lbImg.addEventListener('touchend', e => {
+  if(touchX === null) return;
+  const dx = e.changedTouches[0].clientX - touchX;
+  if(Math.abs(dx) > 45) showLb(idx + (dx < 0 ? 1 : -1));
+  touchX = null;
+});

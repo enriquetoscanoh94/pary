@@ -101,24 +101,20 @@
       <p class="eyebrow eyebrow--dark" data-i18n="gallery_eyebrow">Nuestro trabajo</p>
       <h2 data-i18n="gallery_title">Galería de proyectos</h2>
       <div class="gallery">
-        <figure class="gallery__item">
-          <img src="assets/proj1.jpg" alt="Preparacion de pared con papel y malla" loading="lazy" />
-          <figcaption data-i18n="proj1_cap">Preparación: papel y malla</figcaption>
-        </figure>
-        <figure class="gallery__item">
-          <img src="assets/proj2.jpg" alt="Instalacion de malla metalica" loading="lazy" />
-          <figcaption data-i18n="proj2_cap">Instalación de malla</figcaption>
-        </figure>
-        <figure class="gallery__item">
-          <img src="assets/proj3.jpg" alt="Aplicacion de base coat de stucco" loading="lazy" />
-          <figcaption data-i18n="proj3_cap">Aplicación de base</figcaption>
-        </figure>
-        <figure class="gallery__item">
-          <img src="assets/proj4.jpg" alt="Pared con acabado de stucco terminado" loading="lazy" />
-          <figcaption data-i18n="proj4_cap">Acabado final</figcaption>
-        </figure>
+        <figure class="gallery__item"><img src="assets/proj5.jpg" alt="Casa con acabado de stucco terminado" loading="lazy" /></figure>
+        <figure class="gallery__item"><img src="assets/proj6.jpg" alt="Esquina de casa con stucco terminado" loading="lazy" /></figure>
+        <figure class="gallery__item"><img src="assets/proj9.jpg" alt="Pared de stucco terminada con ventana" loading="lazy" /></figure>
+        <figure class="gallery__item"><img src="assets/proj7.jpg" alt="Detalle de ventana con acabado de stucco" loading="lazy" /></figure>
+        <figure class="gallery__item"><img src="assets/proj11.jpg" alt="Fachada con stucco terminado" loading="lazy" /></figure>
+        <figure class="gallery__item"><img src="assets/proj10.jpg" alt="Pared de stucco lista con ventana" loading="lazy" /></figure>
+        <figure class="gallery__item"><img src="assets/proj12.jpg" alt="Ventana con acabado de stucco" loading="lazy" /></figure>
+        <figure class="gallery__item"><img src="assets/proj8.jpg" alt="Aplicando acabado de stucco en muro" loading="lazy" /></figure>
+        <figure class="gallery__item"><img src="assets/proj4.jpg" alt="Acabado de stucco en pared" loading="lazy" /></figure>
+        <figure class="gallery__item"><img src="assets/proj3.jpg" alt="Aplicacion de base coat de stucco" loading="lazy" /></figure>
+        <figure class="gallery__item"><img src="assets/proj2.jpg" alt="Instalacion de malla metalica" loading="lazy" /></figure>
+        <figure class="gallery__item"><img src="assets/proj1.jpg" alt="Preparacion de pared con papel y malla" loading="lazy" /></figure>
       </div>
-      <p class="gallery__note" data-i18n="gallery_note">Proyecto real en Stockton, CA — del preparado al acabado.</p>
+      <p class="gallery__note" data-i18n="gallery_note">Proyectos reales en Stockton, CA y alrededores — del preparado al acabado.</p>
     </div>
   </section>
 
@@ -181,6 +177,15 @@
   <a href="tel:12096123567" class="fab" aria-label="Call now">
     <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M6.6 10.8c1.4 2.8 3.8 5.2 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.6 21 3 13.4 3 4c0-.6.4-1 1-1h3.4c.6 0 1 .4 1 1 0 1.2.2 2.4.6 3.6.1.4 0 .8-.3 1L6.6 10.8z"/></svg>
   </a>
+
+  <!-- ===== Lightbox / carrusel ===== -->
+  <div class="lightbox" id="lightbox" aria-hidden="true" role="dialog" aria-label="Galería">
+    <button class="lb__close" id="lbClose" aria-label="Cerrar">&times;</button>
+    <button class="lb__nav lb__prev" id="lbPrev" aria-label="Anterior">&#8249;</button>
+    <img class="lb__img" id="lbImg" src="" alt="" />
+    <button class="lb__nav lb__next" id="lbNext" aria-label="Siguiente">&#8250;</button>
+    <div class="lb__counter" id="lbCounter"></div>
+  </div>
 
   <script src="script.js"></script>
 </body>
