@@ -55,13 +55,13 @@ document.getElementById('year').textContent = new Date().getFullYear();
 const track = document.getElementById('carTrack');
 const slides = Array.from(track.children);
 const dotsWrap = document.getElementById('carDots');
-let cur = 0, autoTimer = null;
+let cur = 0;
 
 slides.forEach((_, i) => {
   const d = document.createElement('button');
   d.className = 'car__dot' + (i === 0 ? ' active' : '');
   d.setAttribute('aria-label', 'Foto ' + (i + 1));
-  d.addEventListener('click', () => { goTo(i); resetAuto(); });
+  d.addEventListener('click', () => goTo(i));
   dotsWrap.appendChild(d);
 });
 const dots = Array.from(dotsWrap.children);
@@ -71,25 +71,18 @@ function goTo(i){
   track.style.transform = 'translateX(' + (-cur * 100) + '%)';
   dots.forEach((d, k) => d.classList.toggle('active', k === cur));
 }
-document.getElementById('carNext').addEventListener('click', () => { goTo(cur + 1); resetAuto(); });
-document.getElementById('carPrev').addEventListener('click', () => { goTo(cur - 1); resetAuto(); });
-
-// autoplay
-function startAuto(){ autoTimer = setInterval(() => goTo(cur + 1), 5000); }
-function resetAuto(){ clearInterval(autoTimer); startAuto(); }
-const carousel = document.getElementById('carousel');
-carousel.addEventListener('mouseenter', () => clearInterval(autoTimer));
-carousel.addEventListener('mouseleave', startAuto);
-startAuto();
+document.getElementById('carNext').addEventListener('click', () => goTo(cur + 1));
+document.getElementById('carPrev').addEventListener('click', () => goTo(cur - 1));
 
 // swipe en el carrusel
+const carousel = document.getElementById('carousel');
 let cX = null;
-carousel.addEventListener('touchstart', e => { cX = e.changedTouches[0].clientX; clearInterval(autoTimer); }, {passive:true});
+carousel.addEventListener('touchstart', e => { cX = e.changedTouches[0].clientX; }, {passive:true});
 carousel.addEventListener('touchend', e => {
   if(cX === null) return;
   const dx = e.changedTouches[0].clientX - cX;
   if(Math.abs(dx) > 45) goTo(cur + (dx < 0 ? 1 : -1));
-  cX = null; startAuto();
+  cX = null;
 });
 
 // ===== Lightbox (tocar foto -> pantalla completa) =====
